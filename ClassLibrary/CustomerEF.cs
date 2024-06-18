@@ -1,6 +1,6 @@
-﻿using Tasksample.Models;
 using Tasksample.CustomerDbcontext;
-using ClassLibrary.ICustomer;
+using Tasksample.Customerdetails;
+using ClassLibrary.IcustomerEF;
 using Microsoft.EntityFrameworkCore;
 
 

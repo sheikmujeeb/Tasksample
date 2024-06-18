@@ -1,20 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tasksample.Models;
-
-
-
-
+using Tasksample.CustomerDbcontext;
+using Tasksample.ICustomer;
 
 namespace Tasksample.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly ICustomerEF _customerEF;
+        private readonly ICustomerEF Customer;
 
         public CustomerController(CustomerEF customerEF)
         {
-            _customerEF = customerEF;
+            Customer = customer;
         }
         // GET: CustomerController1
         public ActionResult Show()

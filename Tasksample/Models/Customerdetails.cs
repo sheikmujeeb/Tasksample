@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using System.ComponentModel.DataAnnotations;
 
-namespace Tasksample.Models
+namespace Tasksample.Customerdetails
 
 {
     public class Customerdetails
