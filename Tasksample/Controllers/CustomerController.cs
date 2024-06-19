@@ -1,29 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tasksample.Models;
-using Tasksample.CustomerDbContext;
+using Tasksample.Context;
 using Tasksample.ICustomer;
+using Tasksample.Customer;
+using Newtonsoft.Json.Linq;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace Tasksample.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly ICustomerEF Customer;
+        private readonly ICustomerEF _Customer;
 
         public CustomerController(ICustomerEF customer)
         {
-            Customer = customer;
+            _Customer = customer;
         }
         // GET: CustomerController1
         public ActionResult Show()
         {
-            var result = Customer.Show();
+            var result = _Customer.Show();
             return View("List",result);
         }
 
         // GET: CustomerController1/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            var Result = _Customer.Search(id);
+            return View("Details", Result);
         }
 
         // GET: CustomerController1/Create
@@ -35,37 +40,36 @@ namespace Tasksample.Controllers
         // POST: CustomerController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customerdetails collection)
+        public ActionResult Create(Customerdetails sign)
         {
             try
             {
-                var response = Customer.Signup(collection);
-                if (response != null)
-                {
-
-                }
-                return RedirectToAction(nameof(Create));
+                var result= _Customer.Signup(sign);
+                return RedirectToAction(nameof(Show));
             }
             catch
             {
                 return View();
             }
-        }
+        }   
 
         // GET: CustomerController1/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Update(long id)
         {
-            return View();
+            var find = _Customer.Search(id);
+            return View ("Edit",find);
+           
         }
 
         // POST: CustomerController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Customerdetails model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = _Customer.Updatecustomer(model);
+                return RedirectToAction(nameof(Show));
             }
             catch
             {
@@ -74,19 +78,21 @@ namespace Tasksample.Controllers
         }
 
         // GET: CustomerController1/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
-            return View();
+            var result=_Customer.Search(id);
+            return View("Delete",result);
         }
 
         // POST: CustomerController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(long id, Customerdetails record)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = _Customer.Delete(record);
+                return RedirectToAction(nameof(Show));
             }
             catch
             {

@@ -1,15 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using Tasksample.Models;
 using Tasksample.ICustomer;
-using Tasksample.CustomerDbContext;
+using Tasksample.Context;
+using Tasksample.Customer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<ICustomerEF, CustomerEF>();
 
-builder.Services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Dbconnection")));
+builder.Services.AddDbContext<CustomerDbContext>(options =>
+{
+options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+});
 
 var app = builder.Build();
 

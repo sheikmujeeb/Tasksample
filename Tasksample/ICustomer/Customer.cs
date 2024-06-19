@@ -1,50 +1,94 @@
-﻿using Tasksample.CustomerDbContext;
+﻿using Tasksample.Context;
 using Tasksample.Models;
 using Tasksample.ICustomer;
 using Microsoft.EntityFrameworkCore;
 
-namespace Tasksample.ICustomer
+namespace Tasksample.Customer
 {
-        public class CustomerEF : ICustomerEF
+    public class CustomerEF : ICustomerEF
+    {
+
+        private readonly CustomerDbContext Dbcontext;
+
+        public CustomerEF(CustomerDbContext context)
         {
+            Dbcontext = context;
+        }
 
-            private readonly CustomerDbContext _context;
-
-            public CustomerEF(CustomerDbContext customercontext)
+        public IEnumerable<Customerdetails> Show()
+        {
+            try
             {
-                _context = customercontext;
-            }
-
-            public IEnumerable<Customerdetails> Show()
-            {
-                try
-                {
-                    IEnumerable<Customerdetails> Customers = _context.CustomerEF.ToList();
-                    return Customers;
-
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message, ex);
-                }
+                IEnumerable<Customerdetails> Customers = Dbcontext.CustomerEF.ToList();
+                return Customers;
 
             }
-
-            public async Task<object> Signup(Customerdetails customer)
+            catch (Exception ex)
             {
-                try
-                {
-                    var result = await _context.CustomerEF.AddAsync(customer);
-                    _context.SaveChanges();
-                    return (result);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message, ex);
-                }
-
+                throw new Exception(ex.Message, ex);
             }
 
         }
 
+        public async Task<Object> Signup(Customerdetails customer)
+        {
+            try
+            {
+                var result = await Dbcontext.CustomerEF.AddAsync(customer);
+                Dbcontext.SaveChanges();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
+        }
+        public async Task<Customerdetails> Updatecustomer(Customerdetails customer)
+        {
+            try
+            {
+                Dbcontext.CustomerEF.Update(customer);
+                Dbcontext.SaveChanges();
+                var result = await Dbcontext.CustomerEF.FindAsync(customer.Id);
+                return result!;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+        public Customerdetails Search(long id)
+        {
+            try
+            {
+                Customerdetails Customers = Dbcontext.CustomerEF.FirstOrDefault(x => x.Id == id);
+                return Customers;
+
+      
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
+        }
+        public async Task<Customerdetails>Delete(Customerdetails customer)    
+        {
+            try
+            {
+                Dbcontext.CustomerEF.Remove(customer);
+                Dbcontext.SaveChanges();
+                var result = await Dbcontext.CustomerEF.FindAsync(customer.Id);
+                return result;
+           
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
+        }
+    }
 }
