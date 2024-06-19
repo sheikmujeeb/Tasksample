@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
-using System.Diagnostics.Contracts;
 using Tasksample.Models;
 
-namespace Tasksample.CustomerDbcontext
+namespace Tasksample.CustomerDbContext
 {
 
     public class CustomerDbContext : DbContext
@@ -12,7 +10,7 @@ namespace Tasksample.CustomerDbcontext
         public CustomerDbContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<Customerdetails> Customers { get; set; }
+        public DbSet<Customerdetails> CustomerEF { get; set; }
 
     }
 }

@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Tasksample.Models;
-using Tasksample.CustomerDbcontext;
+using Tasksample.CustomerDbContext;
 using Tasksample.ICustomer;
 
 namespace Tasksample.Controllers
@@ -10,14 +9,14 @@ namespace Tasksample.Controllers
     {
         private readonly ICustomerEF Customer;
 
-        public CustomerController(CustomerEF customerEF)
+        public CustomerController(ICustomerEF customer)
         {
             Customer = customer;
         }
         // GET: CustomerController1
         public ActionResult Show()
         {
-            var result = _customerEF.Show();
+            var result = Customer.Show();
             return View("List",result);
         }
 
@@ -40,7 +39,7 @@ namespace Tasksample.Controllers
         {
             try
             {
-                var response = _customerEF.Signup(collection);
+                var response = Customer.Signup(collection);
                 if (response != null)
                 {
 

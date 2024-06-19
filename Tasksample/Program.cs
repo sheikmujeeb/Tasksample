@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Tasksample.Customer;
+using Tasksample.Models;
+using Tasksample.ICustomer;
+using Tasksample.CustomerDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 

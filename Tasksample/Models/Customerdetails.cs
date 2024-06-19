@@ -1,6 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Tasksample.Customerdetails
+namespace Tasksample.Models
+
 
 {
     public class Customerdetails
