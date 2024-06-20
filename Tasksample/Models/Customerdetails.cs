@@ -8,6 +8,7 @@ namespace Tasksample.Models
     {
         [Key]
         public long Id { get; set; }
+
         [Required]
         [Display(Name = "Full Name")]
         public string Fullname { get; set; } = string.Empty;

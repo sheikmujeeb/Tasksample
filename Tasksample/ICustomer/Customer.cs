@@ -78,6 +78,7 @@ namespace Tasksample.Customer
         {
             try
             {
+                
                 Dbcontext.CustomerEF.Remove(customer);
                 Dbcontext.SaveChanges();
                 var result = await Dbcontext.CustomerEF.FindAsync(customer.Id);

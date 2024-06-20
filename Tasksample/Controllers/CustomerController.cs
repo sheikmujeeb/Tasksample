@@ -91,6 +91,7 @@ namespace Tasksample.Controllers
         {
             try
             {
+                
                 var response = _Customer.Delete(record);
                 return RedirectToAction(nameof(Show));
             }
