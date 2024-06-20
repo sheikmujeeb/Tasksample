@@ -3,8 +3,6 @@ using Tasksample.Models;
 using Tasksample.Context;
 using Tasksample.ICustomer;
 using Tasksample.Customer;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace Tasksample.Controllers
 {
@@ -40,12 +38,19 @@ namespace Tasksample.Controllers
         // POST: CustomerController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customerdetails sign)
+        public ActionResult Create(Customerdetails value)
         {
             try
             {
-                var result= _Customer.Signup(sign);
-                return RedirectToAction(nameof(Show));
+                if (ModelState.IsValid)
+                {
+                    var result = _Customer.Signup(value);
+                    return RedirectToAction(nameof(Show));
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
