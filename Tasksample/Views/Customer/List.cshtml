@@ -9,7 +9,7 @@
         <h2 class="mb-4">Customer Details</h2>
 
         <a asp-controller="Customer" asp-action="Create" class="btn btn-primary h-50"><i class="fa-solid fa-plus"></i> Create New Account</a>
-        </div>
+
     </div>
 
 
@@ -19,29 +19,25 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
-      </div>
-    </td>
-    </tr>
-</table>
-       <head>
+               <thead>
   
             <th>
-                @Html.DisplayName("Edit")
+                @Html.DisplayName("")
             </th>
                <th>
                 @Html.DisplayNameFor(model => model.Id)
                </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                @Html.DisplayNameFor(model => model.Fullname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerType)
+                @Html.DisplayNameFor(model => model.Customertype)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                @Html.DisplayNameFor(model => model.Phonenumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
+                @Html.DisplayNameFor(model => model.Dateofbirth)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -53,24 +49,14 @@
                 @Html.DisplayNameFor(model => model.Country)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                @Html.DisplayNameFor(model => model.Isactive)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Remarks)
             </th>
-             <th>
-                 
-                @Html.DisplayNameFor(model => model.CreatedOn)
-                
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-       
-    </head>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
@@ -83,16 +69,16 @@
                   @Html.DisplayFor(modelItem => item.Id)
                </th>
             <td>
-                @Html.DisplayFor(modelItem => item.FullName)
+                @Html.DisplayFor(modelItem => item.Fullname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerType)
+                @Html.DisplayFor(modelItem => item.Customertype)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                @Html.DisplayFor(modelItem => item.Phonenumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                @Html.DisplayFor(modelItem => item.Dateofbirth)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
@@ -104,7 +90,7 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @if (item.IsActive)
+                @if (item.Isactive)
                  {
                      <button class="btn btn-sm btn-success w-100 my-auto">Active</button>
                  }
@@ -116,39 +102,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Remarks)
             </td>
-                 @* <td class="d-flex mt-4"> *@
+                @* <td class="d-flex mt-4"> *@
                     @* @Html.ActionLink("Edit", "Update", new { id = item.Id }) | *@
                                     @*  @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                                
                   
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) *@ 
-
-             <td>
-                        @if (item.CreatedOn!=DateTime.Now)
-                        {
-                            @Html.DisplayFor(modelItem => item.CreatedOn)
-                          
-                        }
-                        else
-                        {
-                            @Html.DisplayFor(modelItem => DateTime.Now)
-                        }
-                    </td>
-           <td>
-                        @if (item.CreatedOn == DateTime.Now)
-                        {
-                            @Html.DisplayFor(modelItem => item.UpdatedOn)
-
-                        }
-                        else
-                        {
-                            @Html.DisplayFor(modelItem => DateTime.Now)
-                        }
-                 
-             </td>
-             <td>
-             @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) *@
                                 <td class="d-flex px-2">
                                     <a asp-controller="Customer" asp-action="Delete" asp-route-id="@item.Id" method="get" class="btn btn-outline-primary mr-2"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;
                                     <a asp-controller="Customer" asp-action="Details" asp-route-id="@item.Id" method="get" class="btn btn-outline-primary ml-2"><i class="fa fa-info" aria-hidden="true"></i></a>

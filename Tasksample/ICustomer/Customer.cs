@@ -3,7 +3,6 @@ using Tasksample.Models;
 using Tasksample.ICustomer;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Tasksample.Customer
 {
     public class CustomerEF : ICustomerEF
