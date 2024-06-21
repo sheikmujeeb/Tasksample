@@ -1,4 +1,5 @@
-﻿using Tasksample.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Tasksample.Models;
 
 namespace Tasksample.ICustomer
 {
@@ -9,5 +10,6 @@ namespace Tasksample.ICustomer
         Task<Customerdetails> Updatecustomer(Customerdetails customer);
         Customerdetails Search(long id);
         public void Delete(long id);
+        
     }
 }

@@ -135,10 +135,55 @@
 </table>
 
 
-
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+@*pagenation*@
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <nav>
+            <ul class="pagination justify-content-front">
+                <li class="page-item ">
+                    <a class="page-link text-black" asp-route-pageNumber="1">
+                
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-black" href="">
+                      
+                    </a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link text-black" href="">1</a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link text-black" ashref="">2</a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link text-black" href="">3</a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link text-black" href="">4</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-black" href="">
+                        <span>Next</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-black" href="">
+                        <span>Last</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
