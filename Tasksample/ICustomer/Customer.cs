@@ -45,14 +45,14 @@ namespace Tasksample.Customer
             }
 
         }
-        public async Task<Customerdetails> Updatecustomer(Customerdetails customer)
+        public async Task<Customerdetails> Updatecustomer(Customerdetails model)
         {
             try
             {
-                
-                Dbcontext.CustomerEF.Update(customer);
+                model.UpdatedOn = DateTime.Now;
+                Dbcontext.CustomerEF.Update(model);
                 Dbcontext.SaveChanges();
-                var result = await Dbcontext.CustomerEF.FindAsync(customer.Id);
+                var result = await Dbcontext.CustomerEF.FindAsync(model.Id);
                 return result!;
 
             }

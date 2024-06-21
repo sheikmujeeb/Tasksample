@@ -46,6 +46,7 @@ namespace Tasksample.Controllers
         {
             try
             {
+                sign.CreatedOn= DateTime.Now;
                 var result= _Customer.Signup(sign);
                 return RedirectToAction(nameof(Show));
             }
@@ -70,7 +71,7 @@ namespace Tasksample.Controllers
         {
             try
             {
-               model.UpdatedOn= DateTime.Now;
+               model.UpdatedOn = DateTime.Now;
                 var response = _Customer.Updatecustomer(model);
                 return RedirectToAction(nameof(Show));
             }

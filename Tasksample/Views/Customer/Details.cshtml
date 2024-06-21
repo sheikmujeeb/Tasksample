@@ -63,15 +63,8 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
-        <dd class = "col-sm-1">
-            @if (Model.IsActive)
-            {
-                <button class="btn btn-sm btn-success w-100 my-auto">Active</button>
-            }
-            else
-            {
-                <button class="btn btn-sm btn-danger w-100 my-auto">InActive</button>
-            }
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsActive)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Remarks)
