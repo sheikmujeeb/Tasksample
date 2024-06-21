@@ -90,12 +90,12 @@ namespace Tasksample.Controllers
         // POST: CustomerController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(long id, Customerdetails record)
+        public ActionResult Deleted(long id)
         {
             try
             {
                 
-                var response = _Customer.Delete(record);
+                _Customer.Delete(id);
                 return RedirectToAction(nameof(Show));
             }
             catch

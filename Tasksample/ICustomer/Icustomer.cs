@@ -8,6 +8,6 @@ namespace Tasksample.ICustomer
         Task<Object> Signup(Customerdetails customer);
         Task<Customerdetails> Updatecustomer(Customerdetails customer);
         Customerdetails Search(long id);
-        Task<Customerdetails> Delete(Customerdetails customer);
+        public void Delete(long id);
     }
 }

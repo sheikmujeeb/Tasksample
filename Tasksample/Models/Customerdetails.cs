@@ -36,9 +36,9 @@ namespace Tasksample.Models
         public string Remarks { get; set; } = string.Empty;
         [Required]
         
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }= DateTime.Now;
         [Required]
-        public DateTime UpdatedOn { get; set; } 
+        public DateTime UpdatedOn { get; set; } = DateTime.Now; 
         [Required]
         public bool IsDeleted { get; set; }
 

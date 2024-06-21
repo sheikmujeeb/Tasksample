@@ -19,7 +19,7 @@ namespace Tasksample.Customer
         {
             try
             {
-                IEnumerable<Customerdetails> Customers = Dbcontext.CustomerEF.ToList();
+                IEnumerable<Customerdetails> Customers = Dbcontext.CustomerEF.Where(p => !p.IsDeleted);
                 return Customers;
 
             }
@@ -65,7 +65,7 @@ namespace Tasksample.Customer
         {
             try
             {
-                Customerdetails Customers = Dbcontext.CustomerEF.FirstOrDefault(x => x.Id == id);
+                var Customers = Dbcontext.CustomerEF.FirstOrDefault(p => p.Id == id && !p.IsDeleted);
                 return Customers;
 
       
@@ -76,15 +76,20 @@ namespace Tasksample.Customer
             }
 
         }
-        public async Task<Customerdetails>Delete(Customerdetails customer)    
+        public void Delete(long id)    
         {
             try
             {
-                customer.IsDeleted = true;
-                Dbcontext.CustomerEF.Remove(customer);
-                Dbcontext.SaveChanges();
-                var result = await Dbcontext.CustomerEF.FindAsync(customer.Id);
-                return result;
+                
+                //Dbcontext.CustomerEF.Remove(customer);-----------Soft Delete
+              
+                var result =  Dbcontext.CustomerEF.Find(id);
+                if(result !=null)
+                {
+                    result.IsDeleted = true;
+                    Dbcontext.SaveChanges();
+                }
+               
            
             }
             catch (Exception ex)
