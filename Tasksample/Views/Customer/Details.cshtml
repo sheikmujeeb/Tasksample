@@ -4,6 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
+
 <h1>Details</h1>
 
 <div>
@@ -18,28 +19,28 @@
         </dd>
 
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fullname)
+            @Html.DisplayNameFor(model => model.FullName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fullname)
+            @Html.DisplayFor(model => model.FullName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Customertype)
+            @Html.DisplayNameFor(model => model.CustomerType)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Customertype)
+            @Html.DisplayFor(model => model.CustomerType)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phonenumber)
+            @Html.DisplayNameFor(model => model.PhoneNumber)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phonenumber)
+            @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dateofbirth)
+            @Html.DisplayNameFor(model => model.DateOfBirth)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dateofbirth)
+            @Html.DisplayFor(model => model.DateOfBirth)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
@@ -60,10 +61,17 @@
             @Html.DisplayFor(model => model.Country)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Isactive)
+            @Html.DisplayNameFor(model => model.IsActive)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Isactive)
+        <dd class = "col-sm-1">
+            @if (Model.IsActive)
+            {
+                <button class="btn btn-sm btn-success w-100 my-auto">Active</button>
+            }
+            else
+            {
+                <button class="btn btn-sm btn-danger w-100 my-auto">InActive</button>
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Remarks)

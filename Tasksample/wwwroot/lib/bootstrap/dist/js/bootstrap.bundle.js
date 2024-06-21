@@ -4099,9 +4099,9 @@
         return;
       }
 
-      const isActive = this.classList.contains(CLASS_NAME_SHOW$6);
+      const IsActive = this.classList.contains(CLASS_NAME_SHOW$6);
 
-      if (!isActive && event.key === ESCAPE_KEY$2) {
+      if (!IsActive && event.key === ESCAPE_KEY$2) {
         return;
       }
 
@@ -4121,7 +4121,7 @@
       }
 
       if (event.key === ARROW_UP_KEY || event.key === ARROW_DOWN_KEY) {
-        if (!isActive) {
+        if (!IsActive) {
           instance.show();
         }
 
@@ -4130,7 +4130,7 @@
         return;
       }
 
-      if (!isActive || event.key === SPACE_KEY) {
+      if (!IsActive || event.key === SPACE_KEY) {
         Dropdown.clearMenus();
       }
     }
@@ -4415,7 +4415,7 @@
   class FocusTrap {
     constructor(config) {
       this._config = this._getConfig(config);
-      this._isActive = false;
+      this._IsActive = false;
       this._lastTabNavDirection = null;
     }
 
@@ -4425,7 +4425,7 @@
         autofocus
       } = this._config;
 
-      if (this._isActive) {
+      if (this._IsActive) {
         return;
       }
 
@@ -4437,15 +4437,15 @@
 
       EventHandler.on(document, EVENT_FOCUSIN$1, event => this._handleFocusin(event));
       EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
-      this._isActive = true;
+      this._IsActive = true;
     }
 
     deactivate() {
-      if (!this._isActive) {
+      if (!this._IsActive) {
         return;
       }
 
-      this._isActive = false;
+      this._IsActive = false;
       EventHandler.off(document, EVENT_KEY$7);
     } // Private
 
@@ -6248,9 +6248,9 @@
       }
 
       for (let i = this._offsets.length; i--;) {
-        const isActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === 'undefined' || scrollTop < this._offsets[i + 1]);
+        const IsActiveTarget = this._activeTarget !== this._targets[i] && scrollTop >= this._offsets[i] && (typeof this._offsets[i + 1] === 'undefined' || scrollTop < this._offsets[i + 1]);
 
-        if (isActiveTarget) {
+        if (IsActiveTarget) {
           this._activate(this._targets[i]);
         }
       }

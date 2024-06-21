@@ -9,6 +9,16 @@
     {
       "library": "bootstrap-icons@1.11.3",
       "destination": "wwwroot/bootstrap-icons/"
+    },
+    {
+      "library": "paginationjs@2.6.0",
+      "destination": "wwwroot/paginationjs/",
+      "files": [
+        "pagination.min.js",
+        "pagination.css",
+        "pagination.js",
+        "pagination.min.css"
+      ]
     }
   ]
 }

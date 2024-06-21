@@ -14,28 +14,28 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Fullname" class="control-label"></label>
-                <input asp-for="Fullname" class="form-control" />
-                <span asp-validation-for="Fullname" class="text-danger"></span>
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Customertype" class="control-label"></label>
-                @* <input asp-for="Customertype" class="form-control" /> *@
-                <select class="form-select" asp-for="Customertype" id="Customertype">
+                <label asp-for="CustomerType" class="control-label"></label>
+                @* <input asp-for="CustomerType" class="form-control" /> *@
+                <select class="form-select" asp-for="CustomerType" id="CustomerType">
                     <option value="Old">Old</option>
                     <option value="New">New</option>
                 </select>
-                <span asp-validation-for="Customertype" class="text-danger"></span>
+                <span asp-validation-for="CustomerType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Phonenumber" class="control-label"></label>
-                <input asp-for="Phonenumber" class="form-control" />
-                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dateofbirth" class="control-label"></label>
-                <input asp-for="Dateofbirth" class="form-control" />
-                <span asp-validation-for="Dateofbirth" class="text-danger"></span>
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
@@ -69,9 +69,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Isactive" class="control-label"></label>
-                <input type="checkbox" asp-for="Isactive" class="form-check-input" />
-                <span asp-validation-for="Isactive" class="text-danger"></span>
+                <label asp-for="IsActive" class="control-label"></label>
+                <input type="checkbox" asp-for="IsActive" class="form-check-input" />
+                <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

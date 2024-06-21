@@ -34,6 +34,7 @@ namespace Tasksample.Customer
         {
             try
             {
+               
                 var result = await Dbcontext.CustomerEF.AddAsync(customer);
                 Dbcontext.SaveChanges();
                 return result;
@@ -48,6 +49,7 @@ namespace Tasksample.Customer
         {
             try
             {
+                
                 Dbcontext.CustomerEF.Update(customer);
                 Dbcontext.SaveChanges();
                 var result = await Dbcontext.CustomerEF.FindAsync(customer.Id);
@@ -78,7 +80,7 @@ namespace Tasksample.Customer
         {
             try
             {
-                
+                customer.IsDeleted = true;
                 Dbcontext.CustomerEF.Remove(customer);
                 Dbcontext.SaveChanges();
                 var result = await Dbcontext.CustomerEF.FindAsync(customer.Id);

@@ -3,24 +3,26 @@ using Tasksample.Models;
 using Tasksample.Context;
 using Tasksample.ICustomer;
 using Tasksample.Customer;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using System.Data.SqlClient;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Tasksample.Controllers
 {
     public class CustomerController : Controller
     {
         private readonly ICustomerEF _Customer;
-
+        int pagesize = 5;
         public CustomerController(ICustomerEF customer)
         {
             _Customer = customer;
         }
         // GET: CustomerController1
-        public ActionResult Show()
+        public ActionResult Show(int pageno=1)
         {
             var result = _Customer.Show();
-            return View("List",result);
+            var page = new PagedList<Customerdetails>(result, pageno,pagesize);
+            return View("List", page);
         }
 
         // GET: CustomerController1/Details/5
@@ -68,6 +70,7 @@ namespace Tasksample.Controllers
         {
             try
             {
+               model.UpdatedOn= DateTime.Now;
                 var response = _Customer.Updatecustomer(model);
                 return RedirectToAction(nameof(Show));
             }
@@ -100,5 +103,6 @@ namespace Tasksample.Controllers
                 return View();
             }
         }
+      
     }
 }
