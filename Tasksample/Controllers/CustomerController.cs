@@ -6,23 +6,25 @@ using Tasksample.Customer;
 using System.Data.SqlClient;
 using PagedList.Mvc;
 using PagedList;
+using System.Web.Mvc;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace Tasksample.Controllers
 {
     public class CustomerController : Controller
     {
         private readonly ICustomerEF _Customer;
-        int pagesize = 5;
+        
         public CustomerController(ICustomerEF customer)
         {
             _Customer = customer;
         }
         // GET: CustomerController1
-        public ActionResult Show(int pageno=1)
+        public ActionResult Show(int? page)
         {
-            var result = _Customer.Show();
-            var page = new PagedList<Customerdetails>(result, pageno,pagesize);
-            return View("List", page);
+            var result = _Customer.Show().ToList().ToPagedList(page ?? 1,5);      // Paged List Added
+            
+            return View("List", result);
         }
 
         // GET: CustomerController1/Details/5
@@ -67,12 +69,12 @@ namespace Tasksample.Controllers
         // POST: CustomerController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Customerdetails model)
+        public ActionResult Edit(Customerdetails model)
         {
             try
             {
-               model.UpdatedOn = DateTime.Now;
-                var response = _Customer.Updatecustomer(model);
+               
+               _Customer.Updatecustomer(model);
                 return RedirectToAction(nameof(Show));
             }
             catch

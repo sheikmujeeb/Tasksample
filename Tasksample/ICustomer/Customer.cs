@@ -2,6 +2,8 @@
 using Tasksample.Models;
 using Tasksample.ICustomer;
 using Microsoft.EntityFrameworkCore;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Tasksample.Customer
 {
@@ -45,16 +47,26 @@ namespace Tasksample.Customer
             }
 
         }
-        public async Task<Customerdetails> Updatecustomer(Customerdetails model)
+        public void Updatecustomer(Customerdetails model)
         {
             try
             {
-                model.UpdatedOn = DateTime.Now;
-                Dbcontext.CustomerEF.Update(model);
-                Dbcontext.SaveChanges();
-                var result = await Dbcontext.CustomerEF.FindAsync(model.Id);
-                return result!;
+                var existingCustomer = Dbcontext.CustomerEF.Find(model.Id);
 
+                if (existingCustomer != null)
+                {
+                    existingCustomer.FullName = model.FullName;
+                    existingCustomer.CustomerType = model.CustomerType;
+                    existingCustomer.PhoneNumber = model.PhoneNumber;
+                    existingCustomer.DateOfBirth = model.DateOfBirth;
+                    existingCustomer.Email = model.Email;
+                    existingCustomer.Gender = model.Gender;
+                    existingCustomer.Country = model.Country;
+                    existingCustomer.IsActive = model.IsActive;
+                    existingCustomer.Remarks = model.Remarks;
+                    existingCustomer.UpdatedOn = DateTime.Now;
+                    Dbcontext.SaveChanges();
+                }
             }
             catch (Exception ex)
             {

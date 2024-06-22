@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Tasksample.Models.Customerdetails>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using System.Web.Mvc;
+
+@model IPagedList<Tasksample.Models.Customerdetails>
 
 @{
     ViewData["Title"] = "List";
@@ -22,48 +26,46 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
-               <thead>
   
             <th>
                 @Html.DisplayName("Edit")
             </th>
                <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.First().Id)
                </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullName)
+                    @Html.DisplayNameFor(model => model.First().FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerType)
+                    @Html.DisplayNameFor(model => model.First().CustomerType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                    @Html.DisplayNameFor(model => model.First().PhoneNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
+                    @Html.DisplayNameFor(model => model.First().DateOfBirth)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                    @Html.DisplayNameFor(model => model.First().Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                    @Html.DisplayNameFor(model => model.First().Gender)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Country)
+                    @Html.DisplayNameFor(model => model.First().Country)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                    @Html.DisplayNameFor(model => model.First().IsActive)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Remarks)
+                    @Html.DisplayNameFor(model => model.First().Remarks)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
+                    @Html.DisplayNameFor(model => model.First().CreatedOn)
             </th>
              <th>
-                @Html.DisplayNameFor(model => model.UpdatedOn)
+                    @Html.DisplayNameFor(model => model.First().UpdatedOn)
             </th>
-     
         </tr>
        </div>
        </div>
@@ -104,11 +106,11 @@
             <td>
                 @if (item.IsActive)
                  {
-                     <button class="btn btn-sm btn-success w-100 my-auto">Active</button>
+                     <button class="btn btn-sm btn-success w-10 my-auto"> Active</button>
                  }
                  else
                   {
-                     <button class="btn btn-sm btn-danger w-100 my-auto">InActive</button>
+                     <button class="btn btn-sm btn-danger w-10 my-auto">InActive</button>
                   }
             </td>
             <td>
@@ -149,18 +151,8 @@
         <nav>
             <ul class="pagination justify-content-front">
                 <li class="page-item ">
-                    <a class="page-link text-black" asp-route-pageNumber="1">
-                
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link text-black" href="">
-                      
-                    </a>
-                </li>
-                <li class="page-item ">
-                    <a class="page-link text-black" href="">1</a>
-                </li>
+                    <a class="page-link text-black" class="active" asp-route-pagenumber="1">1 </a>
+                </li>         
                 <li class="page-item ">
                     <a class="page-link text-black" href="">2</a>
                 </li>
@@ -172,18 +164,18 @@
                 </li>
                 <li class="page-item">
                     <a class="page-link text-black" href="">
-                        <span>Next</span>
+                        <span>next</span>
                     </a>
                 </li>
                 <li class="page-item">
                     <a class="page-link text-black" href="">
-                        <span>Last</span>
+                        <span>last</span>
                     </a>
                 </li>
             </ul>
         </nav>
     </div>
 
-</div>
+</div> 
 
 
