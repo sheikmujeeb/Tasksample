@@ -15,23 +15,24 @@
         <h2 class="mb-4">Customer Details</h2>
 
         <a asp-controller="Customer" asp-action="Create" class="btn btn-primary h-50"><i class="fa-solid fa-plus"></i> Create New Account</a>
-
+    
     </div>
 </div>
 
 
-    <!-- Bootstrap card -->
-    <div class="card">
 
-        <div class="card-body">
+<!-- Bootstrap card -->
+<div class="card" >
+
+    <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
-  
+        <tr>
             <th>
                 @Html.DisplayName("Edit")
             </th>
                <th>
-                @Html.DisplayNameFor(model => model.First().Id)
+                    @Html.DisplayNameFor(model => model.First().Id)
                </th>
             <th>
                     @Html.DisplayNameFor(model => model.First().FullName)
@@ -66,12 +67,16 @@
              <th>
                     @Html.DisplayNameFor(model => model.First().UpdatedOn)
             </th>
-        </tr>
-       </div>
-       </div>
-       </div>
-    </thead>
-    <tbody>
+             <th>
+                    @Html.DisplayName("")
+            </th>
+             <th>
+                    @Html.DisplayName("")
+             </th>
+     
+       </tr>
+
+
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -127,14 +132,21 @@
                     @* @Html.ActionLink("Edit", "Update", new { id = item.Id }) | *@
                  @*  @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                       @Html.ActionLink("Delete", "Delete", new { id = item.Id }) *@
-             <td class="d-flex px-2">
-                <a asp-controller="Customer" asp-action="Delete" asp-route-id="@item.Id" method="get" class="btn btn-outline-primary mr-2"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;
-                <a asp-controller="Customer" asp-action="Details" asp-route-id="@item.Id" method="get" class="btn btn-outline-primary ml-2"><i class="fa fa-info" aria-hidden="true"></i></a>            
+             <td >
+                <a asp-controller="Customer" asp-action="Delete" asp-route-id="@item.Id" method="get" class="btn btn-outline-primary"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;
+            </td>
+            <td>
+                <a asp-controller="Customer" asp-action="Details" asp-route-id="@item.Id" method="get" class="btn btn-outline-primary"><i class="fa fa-info" aria-hidden="true"></i></a>        
             </td>
         </tr>
-       }
-    </tbody>
-</table>
+   
+  }
+          </table>
+
+        </div>
+    </div>
+</div><br />
+
 
 
 @section Scripts {
@@ -152,9 +164,9 @@
             <ul class="pagination justify-content-front">
                 <li class="page-item ">
                     <a class="page-link text-black" class="active" asp-route-pagenumber="1">1 </a>
-                </li>         
+                </li>
                 <li class="page-item ">
-                    <a class="page-link text-black" href="">2</a>
+                    <a class="page-link text-black" href=" pageNumber = Model.PageCount + 1">2</a>
                 </li>
                 <li class="page-item ">
                     <a class="page-link text-black" href="">3</a>
@@ -164,18 +176,16 @@
                 </li>
                 <li class="page-item">
                     <a class="page-link text-black" href="">
-                        <span>next</span>
+                        <span>>></span>
                     </a>
                 </li>
                 <li class="page-item">
                     <a class="page-link text-black" href="">
-                        <span>last</span>
+                        <span>Last</span>
                     </a>
                 </li>
             </ul>
         </nav>
     </div>
-
-</div> 
-
+ </div>
 
