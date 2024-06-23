@@ -15,6 +15,7 @@ namespace Tasksample.Models
         public string CustomerType { get; set; } = string.Empty;
         [Required]
         [MaxLength(10)]
+        [Range(1, 9999999999, ErrorMessage = "Please Enter the correct number")]
         public string? PhoneNumber { get; set; }
         [Required]
         [DataType(DataType.Date)]
@@ -41,7 +42,7 @@ namespace Tasksample.Models
         public DateTime UpdatedOn { get; set; }
         [Required]
         public bool IsDeleted { get; set; }
-
+                
     }
  
 }

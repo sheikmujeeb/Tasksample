@@ -4,25 +4,27 @@ using Tasksample.Context;
 using Tasksample.ICustomer;
 using Tasksample.Customer;
 using System.Data.SqlClient;
-using PagedList.Mvc;
 using PagedList;
-using System.Web.Mvc;
-using Microsoft.CodeAnalysis.Scripting;
+using PagedList.Mvc;
+
 
 namespace Tasksample.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly ICustomerEF _Customer;
+        private readonly ICustomerEF Customer;
         
-        public CustomerController(ICustomerEF customer)
+        public CustomerController(ICustomerEF _customer)
         {
-            _Customer = customer;
+            Customer = _customer;
         }
         // GET: CustomerController1
         public ActionResult Show(int? page)
         {
-            var result = _Customer.Show().ToList().ToPagedList(page ?? 1,5);      // Paged List Added
+            var value = Customer.Show();
+            const int pageitems = 5;
+            int currentpage = (page??1);
+            var result=value.ToPagedList(currentpage, pageitems);               
             
             return View("List", result);
         }
@@ -31,7 +33,7 @@ namespace Tasksample.Controllers
         public ActionResult Details(int id)
         {
 
-            var Result = _Customer.Search(id);
+            var Result = Customer.Search(id);
             return View("Details", Result);
         }
 
@@ -49,7 +51,7 @@ namespace Tasksample.Controllers
             try
             {
                 sign.CreatedOn= DateTime.Now;
-                var result= _Customer.Signup(sign);
+                var result= Customer.Signup(sign);
                 return RedirectToAction(nameof(Show));
             }
             catch
@@ -61,7 +63,7 @@ namespace Tasksample.Controllers
         // GET: CustomerController1/Edit/5
         public ActionResult Update(long id)
         {
-            var find = _Customer.Search(id);
+            var find = Customer.Search(id);
             return View ("Edit",find);
            
         }
@@ -73,8 +75,8 @@ namespace Tasksample.Controllers
         {
             try
             {
-               
-               _Customer.Updatecustomer(model);
+
+                Customer.Updatecustomer(model);
                 return RedirectToAction(nameof(Show));
             }
             catch
@@ -86,7 +88,7 @@ namespace Tasksample.Controllers
         // GET: CustomerController1/Delete/5
         public ActionResult Delete(long id)
         {
-            var result=_Customer.Search(id);
+            var result= Customer.Search(id);
             return View("Delete",result);
         }
 
@@ -97,8 +99,8 @@ namespace Tasksample.Controllers
         {
             try
             {
-                
-                _Customer.Delete(id);
+
+                Customer.Delete(id);
                 return RedirectToAction(nameof(Show));
             }
             catch

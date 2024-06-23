@@ -2,8 +2,9 @@
 using Tasksample.Models;
 using Tasksample.ICustomer;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Mvc;
+using System.Net.NetworkInformation;
 using PagedList;
+using PagedList.Mvc;
 
 namespace Tasksample.Customer
 {

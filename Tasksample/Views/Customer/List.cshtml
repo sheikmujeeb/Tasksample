@@ -1,6 +1,5 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@using System.Web.Mvc;
 
 @model IPagedList<Tasksample.Models.Customerdetails>
 
@@ -149,43 +148,22 @@
 
 
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
 
-@*pagenation*@
-<div class="row">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
-        <nav>
-            <ul class="pagination justify-content-front">
-                <li class="page-item ">
-                    <a class="page-link text-black" class="active" asp-route-pagenumber="1">1 </a>
-                </li>
-                <li class="page-item ">
-                    <a class="page-link text-black" href=" pageNumber = Model.PageCount + 1">2</a>
-                </li>
-                <li class="page-item ">
-                    <a class="page-link text-black" href="">3</a>
-                </li>
-                <li class="page-item ">
-                    <a class="page-link text-black" href="">4</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link text-black" href="">
-                        <span>>></span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link text-black" href="">
-                        <span>Last</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
- </div>
+@* <div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 :Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Show",new{Id = @Model.Id,page}))
+</div>
 
+ *@
+
+
+
+
+
+
+
+
+
+
+
+ 

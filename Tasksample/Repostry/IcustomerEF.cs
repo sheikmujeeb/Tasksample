@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.NetworkInformation;
 using Tasksample.Models;
 using PagedList;
 using PagedList.Mvc;

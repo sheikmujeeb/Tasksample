@@ -18,7 +18,6 @@
     <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-    <PackageReference Include="System.Web.Mvc.Extensions" Version="1.1.1.2" />
   </ItemGroup>
 
 </Project>
