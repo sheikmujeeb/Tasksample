@@ -4,6 +4,6 @@ namespace Tasksample.Repostry
 {
     public interface ICustomerTypeEF
     {
-       public IEnumerable<CustomerType> Showall();
+        IEnumerable<CustomerType> Showall();
     }
 }

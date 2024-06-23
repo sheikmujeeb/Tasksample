@@ -1,7 +1,9 @@
 ﻿using Tasksample.Context;
 using Tasksample.Models;
-using System.Data.SqlClient;
 using Tasksample.Dbcontext;
+
+
+
 namespace Tasksample.Repostry
 {
 
@@ -17,7 +19,7 @@ namespace Tasksample.Repostry
         {
             try
             {
-                IEnumerable<CustomerType> Customers = Dbcontext.CustomerTypeEF.Where(p => !p.IsDeleted);
+                IEnumerable<CustomerType> Customers = Dbcontext.CustomerTypeEF;
                 return Customers;
 
             }

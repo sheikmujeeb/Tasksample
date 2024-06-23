@@ -22,14 +22,10 @@ namespace Tasksample.Controllers
             value = obj;
         }
         // GET: CustomerController1
-        public ActionResult Show(int? page)
+        public ActionResult Show()
         {
             var value = Customer.Show();
-            const int pageitems = 5;
-            int currentpage = (page??1);
-            var result=value.ToPagedList(currentpage, pageitems);               
-            
-            return View("List", result);
+            return View("List", value);
         }
 
         // GET: CustomerController1/Details/5
@@ -43,7 +39,11 @@ namespace Tasksample.Controllers
         // GET: CustomerController1/Create
         public ActionResult Create()
         {
-            return View();
+            var result = value.Showall();
+            var entity = new Customerdetails();
+            entity.Optiontypes = result;
+            return View("Create", entity);
+            
         }
 
         // POST: CustomerController1/Create

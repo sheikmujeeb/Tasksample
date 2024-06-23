@@ -3,6 +3,8 @@ using Tasksample.Models;
 using Tasksample.ICustomer;
 using Tasksample.Context;
 using Tasksample.Customer;
+using Tasksample.Repostry;
+using Tasksample.Dbcontext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICustomerEF, CustomerEF>();
+builder.Services.AddScoped<ICustomerTypeEF, CustomerTypeEF>();
 
 builder.Services.AddDbContext<CustomerDbContext>(options =>
 {
 options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+});
+builder.Services.AddDbContext<CustomertypeDbcontext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
 var app = builder.Build();

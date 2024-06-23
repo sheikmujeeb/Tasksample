@@ -1,7 +1,4 @@
-﻿@using PagedList;
-@using PagedList.Mvc;
-
-@model IPagedList<Tasksample.Models.Customerdetails>
+﻿@model IEnumerable<Tasksample.Models.Customerdetails>
 
 @{
     ViewData["Title"] = "List";
@@ -26,45 +23,46 @@
     <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
+      <thead>
         <tr>
             <th>
                 @Html.DisplayName("Edit")
             </th>
                <th>
-                    @Html.DisplayNameFor(model => model.First().Id)
+                    @Html.DisplayNameFor(model => model.Id)
                </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().FullName)
+                    @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().CustomerType)
+                    @Html.DisplayNameFor(model => model.CustomerType)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().PhoneNumber)
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().DateOfBirth)
+                    @Html.DisplayNameFor(model => model.DateOfBirth)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().Email)
+                    @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().Gender)
+                    @Html.DisplayNameFor(model => model.Gender)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().Country)
+                    @Html.DisplayNameFor(model => model.Country)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().IsActive)
+                    @Html.DisplayNameFor(model => model.IsActive)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().Remarks)
+                    @Html.DisplayNameFor(model => model.Remarks)
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.First().CreatedOn)
+                    @Html.DisplayNameFor(model => model.CreatedOn)
             </th>
              <th>
-                    @Html.DisplayNameFor(model => model.First().UpdatedOn)
+                    @Html.DisplayNameFor(model => model.UpdatedOn)
             </th>
              <th>
                     @Html.DisplayName("")
@@ -74,8 +72,9 @@
              </th>
      
        </tr>
+      </thead>
 
-
+      <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -140,6 +139,7 @@
         </tr>
    
   }
+  </tbody>
           </table>
 
         </div>
