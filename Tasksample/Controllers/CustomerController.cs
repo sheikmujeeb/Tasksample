@@ -6,17 +6,20 @@ using Tasksample.Customer;
 using System.Data.SqlClient;
 using PagedList;
 using PagedList.Mvc;
+using Tasksample.Repostry;
 
 
 namespace Tasksample.Controllers
 {
     public class CustomerController : Controller
     {
-        private readonly ICustomerEF Customer;
+         ICustomerEF Customer;
+         ICustomerTypeEF value;
         
-        public CustomerController(ICustomerEF _customer)
+        public CustomerController(ICustomerEF _customer,ICustomerTypeEF obj)
         {
             Customer = _customer;
+            value = obj;
         }
         // GET: CustomerController1
         public ActionResult Show(int? page)

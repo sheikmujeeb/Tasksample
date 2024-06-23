@@ -1,14 +1,31 @@
 ﻿using Tasksample.Context;
 using Tasksample.Models;
-
+using System.Data.SqlClient;
+using Tasksample.Dbcontext;
 namespace Tasksample.Repostry
 {
 
     public class CustomerTypeEF:ICustomerTypeEF
     {
-         public IEnumerable<CustomerType> Showall()
+        private readonly CustomertypeDbcontext Dbcontext;
+
+        public CustomerTypeEF(CustomertypeDbcontext context)
         {
-            throw new NotImplementedException();
+            Dbcontext = context;
+        }
+        public IEnumerable<CustomerType> Showall()
+        {
+            try
+            {
+                IEnumerable<CustomerType> Customers = Dbcontext.CustomerTypeEF.Where(p => !p.IsDeleted);
+                return Customers;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
         }
     }
 }

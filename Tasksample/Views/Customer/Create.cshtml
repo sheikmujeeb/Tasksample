@@ -19,10 +19,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="CustomerType" class="control-label"></label>
-                @* <input asp-for="CustomerType" class="form-control" /> *@
-                <select class="form-select" asp-for="CustomerType" id="CustomerType">
-                    <option value="Old">Old</option>
-                    <option value="New">New</option>
+                <select asp-for="CustomerTypeId" asp-items="@(new SelectList(Model.CustomerType,"CustomerTypeId","CustomerTypeDescription","CreatedOn","CreatedBy"))">   //,"UpdatedOn","UpdatedBy","IsDeleted"
+                    <option value="0">-------Select-------</option>
                 </select>
                 <span asp-validation-for="CustomerType" class="text-danger"></span>
             </div>
