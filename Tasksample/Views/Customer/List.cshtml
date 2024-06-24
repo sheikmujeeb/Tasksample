@@ -146,17 +146,32 @@
     </div>
 </div><br />
 
-
-
-
-@* <div>
-    Page @(Model.PageCount < Model.PageNumber ? 0 :Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Show",new{Id = @Model.Id,page}))
+@*pagenation*@
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-2">
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item ">
+                    <a class="page-link text-black" asp-route-pageNumber="1">
+                        <span><<</span>
+                    </a>
+                </li>
+                @* <li class="page-item">
+                    <a class="page-link text-black" href="">
+                        <span>Previous</span>
+                    </a>
+                </li> *@
+                @for (int i = 1; i <= (ViewBag.response / 2) + 1; i++)
+                {
+                    <li class="page-item ">
+                        <a class="page-link text-black" asp-route-PageNumber="@i">@i</a>
+                    </li>
+                }
+</ul>
+</nav>
 </div>
-
- *@
-
-
 
 
 

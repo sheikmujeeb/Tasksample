@@ -13,6 +13,7 @@ namespace Tasksample.ICustomer
         public void Updatecustomer(Customerdetails customer);
         Customerdetails Search(long id);
         public void Delete(long id);
-        
+        public IActionResult Index(int page = 1, int pageSize = 10);
+
     }
 }

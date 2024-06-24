@@ -6,7 +6,7 @@ using Tasksample.Customer;
 using System.Data.SqlClient;
 using PagedList;
 using PagedList.Mvc;
-using Tasksample.Repostry;
+using System.Configuration;
 
 
 namespace Tasksample.Controllers
@@ -14,19 +14,35 @@ namespace Tasksample.Controllers
     public class CustomerController : Controller
     {
          ICustomerEF Customer;
-         ICustomerTypeEF value;
         
-        public CustomerController(ICustomerEF _customer,ICustomerTypeEF obj)
+        public CustomerController(ICustomerEF _customer)
         {
             Customer = _customer;
-            value = obj;
         }
         // GET: CustomerController1
-        public ActionResult Show()
+        public async Task<IActionResult> Show(int PageNumber)
         {
-            var value = Customer.Show();
-            return View("List", value);
+            try
+            {
+                var value = Customer.Show();
+                ViewBag.response = value.Count();
+
+
+                if (PageNumber < 1)
+                {
+                    PageNumber = 1;
+                }
+                int PageSize = 5;
+                IQueryable<Customerdetails> result = value!.AsQueryable<Customerdetails>();
+                var showall = PageModel<Customerdetails>.CreateAsync(value, PageNumber, PageSize);
+                return View("List", showall.Items);
+            }
+            catch
+            {
+                return View("List");
+            }
         }
+
 
         // GET: CustomerController1/Details/5
         public ActionResult Details(int id)
@@ -39,10 +55,10 @@ namespace Tasksample.Controllers
         // GET: CustomerController1/Create
         public ActionResult Create()
         {
-            var result = value.Showall();
-            var entity = new Customerdetails();
-            entity.Optiontypes = result;
-            return View("Create", entity);
+           // var result = value.Showall();
+            //var entity = new Customerdetails();
+            //entity.Optiontypes = result;
+            return View("Create");
             
         }
 

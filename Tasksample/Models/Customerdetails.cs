@@ -43,8 +43,8 @@ namespace Tasksample.Models
         [Required]
         public bool IsDeleted { get; set; }
         
-        public int CustomerTypeId { get; set; }
-        public IEnumerable<CustomerType> Optiontypes { get; set; }
+        //public int CustomerTypeId { get; set; }
+        //public IEnumerable<CustomerType> Optiontypes { get; set; }
 
     }
  

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.NetworkInformation;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Tasksample.Customer
 {
@@ -110,6 +111,10 @@ namespace Tasksample.Customer
                 throw new Exception(ex.Message, ex);
             }
 
+        }
+        public IActionResult Index(int page = 1, int pageSize = 5)
+        {
+            throw new NotImplementedException();
         }
     }
 }
