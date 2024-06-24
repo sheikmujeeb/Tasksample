@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 namespace Tasksample.Models
 {
-    public class PageModel<T>
+    public class PageModel<T>:List<T>
     {
         public List<T> Items { get; set; }
         public int PageIndex { get; set; }
@@ -19,8 +19,10 @@ namespace Tasksample.Models
         }
         public bool HasPerviousPage => (PageIndex > 1);
         public bool HasNextPage => (PageIndex < TotalPages);
-        public int FirstItem => (PageIndex - 1) * PageSize + 1;
-        public int LastItem => Math.Min(PageIndex * PageSize, TotalItems);
+
+
+        //public int FirstItem => (PageIndex - 1) * PageSize + 1;
+        //public int LastItem => Math.Min(PageIndex * PageSize, TotalItems);
 
         public static PageModel<T> CreateAsync(IEnumerable<T> source, int pageIndex, int pageSize)
         {
