@@ -42,9 +42,6 @@ namespace Tasksample.Models
         public DateTime UpdatedOn { get; set; }
         [Required]
         public bool IsDeleted { get; set; }
-        
-        //public int CustomerTypeId { get; set; }
-        //public IEnumerable<CustomerType> Optiontypes { get; set; }
 
     }
  

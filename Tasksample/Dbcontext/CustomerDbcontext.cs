@@ -9,11 +9,12 @@ namespace Tasksample.Context
     public class CustomerDbContext : DbContext
     {
         
-        public CustomerDbContext(DbContextOptions <CustomerDbContext> options) : base(options)
+        public CustomerDbContext(DbContextOptions options) : base(options)
         {
         }
         public DbSet<Customerdetails> CustomerEF { get; set; }
-      
+        public DbSet<CustomerType> CustomerTypeEF { get; set; }
+
     }
   
 }

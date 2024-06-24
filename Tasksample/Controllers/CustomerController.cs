@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using PagedList;
 using PagedList.Mvc;
 using System.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace Tasksample.Controllers
@@ -14,32 +16,37 @@ namespace Tasksample.Controllers
     public class CustomerController : Controller
     {
          ICustomerEF Customer;
-        
-        public CustomerController(ICustomerEF _customer)
+        CustomerDbContext Type;
+        public CustomerController(ICustomerEF _customer, CustomerDbContext type)
         {
             Customer = _customer;
+            Type = type;
         }
         // GET: CustomerController1
-        public async Task<IActionResult> Show(int PageNumber)
+        public async Task<IActionResult> Show(int PageNumber=1)
         {
             try
             {
                 var value = Customer.Show();
                 ViewBag.response = value.Count();
 
+                if(value!=null)
+                {
 
+                }
                 if (PageNumber < 1)
                 {
                     PageNumber = 1;
                 }
+
                 int PageSize = 5;
                 IQueryable<Customerdetails> result = value!.AsQueryable<Customerdetails>();
-                var showall = PageModel<Customerdetails>.CreateAsync(value, PageNumber, PageSize);
-                return View("List", showall.Items);
+                var page = PageModel<Customerdetails>.CreateAsync(result, PageNumber, PageSize);
+                return View("List", page.Items);
             }
             catch
             {
-                return View("List");
+                return View();
             }
         }
 
@@ -53,19 +60,18 @@ namespace Tasksample.Controllers
         }
 
         // GET: CustomerController1/Create
-        public ActionResult Create()
+        public ActionResult Create(Customerdetails value)
         {
-           // var result = value.Showall();
-            //var entity = new Customerdetails();
-            //entity.Optiontypes = result;
-            return View("Create");
+            var result = Type.CustomerTypeEF.ToList();
+            ViewBag.CustomerType = new SelectList(result, "CustomerTypeId", "CustomerTypeDescription");
+            return View();
             
         }
 
         // POST: CustomerController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customerdetails sign)
+        public ActionResult Register(Customerdetails sign)
         {
             try
             {

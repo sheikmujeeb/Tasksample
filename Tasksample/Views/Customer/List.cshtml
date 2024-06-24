@@ -107,7 +107,7 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @if (item.IsActive)
+                 @if (item.IsActive)
                  {
                      <button class="btn btn-sm btn-success w-10 my-auto"> Active</button>
                  }
@@ -158,11 +158,7 @@
                         <span><<</span>
                     </a>
                 </li>
-                @* <li class="page-item">
-                    <a class="page-link text-black" href="">
-                        <span>Previous</span>
-                    </a>
-                </li> *@
+               
                 @for (int i = 1; i <= (ViewBag.response / 2) + 1; i++)
                 {
                     <li class="page-item ">
@@ -177,7 +173,11 @@
 
 
 
-
+    @* <li class="page-item">
+    <a class="page-link text-black" href="">
+    <span>Previous</span>
+    </a>
+    </li> *@
 
 
 

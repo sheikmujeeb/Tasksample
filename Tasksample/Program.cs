@@ -5,22 +5,19 @@ using Tasksample.Context;
 using Tasksample.Customer;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICustomerEF, CustomerEF>();
-//builder.Services.AddScoped<ICustomerTypeEF, CustomerTypeEF>();
+
 
 builder.Services.AddDbContext<CustomerDbContext>(options =>
 {
 options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
-//builder.Services.AddDbContext<CustomertypeDbcontext>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
-//});
 
 var app = builder.Build();
 

@@ -23,7 +23,7 @@ namespace Tasksample.Customer
         {
             try
             {
-                IEnumerable<Customerdetails> Customers = Dbcontext.CustomerEF.Where(p => !p.IsDeleted);
+                IEnumerable<Customerdetails> Customers = Dbcontext.CustomerEF.Where(p => !p.IsDeleted).ToList();
                 return Customers;
 
             }
