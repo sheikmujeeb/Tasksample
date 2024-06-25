@@ -23,26 +23,18 @@ namespace Tasksample.Controllers
             Type = type;
         }
         // GET: CustomerController1
-        public async Task<IActionResult> Show(int PageNumber=1)
+        public IActionResult List(int? PageNumber)
         {
             try
             {
-                var value = Customer.Show();
-                ViewBag.response = value.Count();
+                int totalcount = Type.CustomerEF.Count();
+                int PageNumbers= PageNumber??1;
+                int pageSize = 5;
+                var item= Type.CustomerEF.ToList().Skip((PageNumbers-1)*pageSize).Take(pageSize);
+                var pageList = PageModel<Customerdetails>.Create(item.ToList(), PageNumbers, pageSize, totalcount);
 
-                if(value!=null)
-                {
-
-                }
-                if (PageNumber < 1)
-                {
-                    PageNumber = 1;
-                }
-
-                int PageSize = 5;
-                IQueryable<Customerdetails> result = value!.AsQueryable<Customerdetails>();
-                var page = PageModel<Customerdetails>.CreateAsync(result, PageNumber, PageSize);
-                return View("List", page.Items);
+                return View (pageList);
+               
             }
             catch
             {
@@ -60,24 +52,24 @@ namespace Tasksample.Controllers
         }
 
         // GET: CustomerController1/Create
-        public ActionResult Create(Customerdetails value)
+        public ActionResult Create()
         {
             var result = Type.CustomerTypeEF.ToList();
             ViewBag.CustomerType = new SelectList(result, "CustomerTypeId", "CustomerTypeDescription");
-            return View();
+            return View("Create");
             
         }
 
         // POST: CustomerController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Customerdetails sign)
+        public ActionResult Create(Customerdetails sign)
         {
             try
             {
                 sign.CreatedOn= DateTime.Now;
                 var result= Customer.Signup(sign);
-                return RedirectToAction(nameof(Show));
+                return RedirectToAction(nameof(List));
             }
             catch
             {
@@ -102,7 +94,7 @@ namespace Tasksample.Controllers
             {
 
                 Customer.Updatecustomer(model);
-                return RedirectToAction(nameof(Show));
+                return RedirectToAction(nameof(List));
             }
             catch
             {
@@ -126,7 +118,7 @@ namespace Tasksample.Controllers
             {
 
                 Customer.Delete(id);
-                return RedirectToAction(nameof(Show));
+                return RedirectToAction(nameof(List));
             }
             catch
             {

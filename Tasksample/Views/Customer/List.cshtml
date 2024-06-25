@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Tasksample.Models.Customerdetails>
+﻿@* @model IEnumerable<Tasksample.Models.Customerdetails>*@
+
+@using Tasksample.Models;
+
+@model PageModel<Tasksample.Models.Customerdetails>
 
 
 @{
@@ -30,47 +34,47 @@
                 @Html.DisplayName("Edit")
             </th>
                <th>
-                    @Html.DisplayNameFor(model => model.Id)
+                    @Html.DisplayName("Id")
                </th>
             <th>
-                    @Html.DisplayNameFor(model => model.FullName)
+                    @Html.DisplayName("FullName")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.CustomerType)
+                    @Html.DisplayName("CustomerType")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                    @Html.DisplayName("PhoneNumber")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.DateOfBirth)
+                    @Html.DisplayName("DateOfBirth")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                    @Html.DisplayName("Email")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.Gender)
+                    @Html.DisplayName("Gender")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.Country)
+                    @Html.DisplayName("Country")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.IsActive)
+                    @Html.DisplayName("IsActive")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.Remarks)
+                    @Html.DisplayName("Remarks")
             </th>
             <th>
-                    @Html.DisplayNameFor(model => model.CreatedOn)
+                    @Html.DisplayName("CreatedOn")
             </th>
              <th>
-                    @Html.DisplayNameFor(model => model.UpdatedOn)
+                    @Html.DisplayName("UpdatedOn")
+            </th>
+             <th>
+                    @Html.DisplayName("")
             </th>
              <th>
                     @Html.DisplayName("")
             </th>
-             <th>
-                    @Html.DisplayName("")
-             </th>
      
        </tr>
       </thead>
@@ -148,10 +152,21 @@
 </div><br />
 
 @*pagenation*@
+@{
+    var PreDisabled= !Model.HasPreviousPage ? "Disabled" : "";
+    var NextDisabled = !Model.HasNextPage ? "Disabled" : "";
+}
 
-<nav aria-label="Page navigation">
+<a asp-action="List" asp-route-PageNumber="@(Model.PageIndex -1)" class="btn btn-default @PreDisabled">Previous</a>
+
+
+<a asp-action="List" asp-route-PageNumber="@(Model.PageIndex +1)" class="btn btn-default @NextDisabled">Next</a>
+
+
+
+@* nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
-        @if (Model.HasPreviousPage)
+        @if (Model.HasPerviousPage)
         {
             <li class="page-item">
                 <a class="page-link" href="@Url.Action("Show", new { pageNumber = Model.PageIndex - 1 })">Previous</a>
@@ -194,7 +209,7 @@
         }
     </ul>
 </nav>
-
+ *@
 
 
 
