@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tasksample.Models
 { 
@@ -13,6 +14,8 @@ namespace Tasksample.Models
         [Required]
         [MaxLength(25)]
         public string CustomerType { get; set; } = string.Empty;
+        [ForeignKey("CustomerType")]
+        public long CustomerTypeId { get; set; }
         [Required]
         [MaxLength(10)]
         [Range(1, 9999999999, ErrorMessage = "Please Enter the correct number")]
@@ -38,8 +41,8 @@ namespace Tasksample.Models
         [Required]
         
         public DateTime CreatedOn { get; set; }
-        [Required]
-        public DateTime UpdatedOn { get; set; }
+        
+        public DateTime? UpdatedOn { get; set; }
         [Required]
         public bool IsDeleted { get; set; }
 

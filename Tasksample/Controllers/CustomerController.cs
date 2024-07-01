@@ -41,8 +41,6 @@ namespace Tasksample.Controllers
                 return View();
             }
         }
-
-
         // GET: CustomerController1/Details/5
         public ActionResult Details(int id)
         {
@@ -50,7 +48,6 @@ namespace Tasksample.Controllers
             var Result = Customer.Search(id);
             return View("Details", Result);
         }
-
         // GET: CustomerController1/Create
         public ActionResult Create()
         {
@@ -59,7 +56,6 @@ namespace Tasksample.Controllers
             return View("Create");
             
         }
-
         // POST: CustomerController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -68,6 +64,7 @@ namespace Tasksample.Controllers
             try
             {
                 sign.CreatedOn= DateTime.Now;
+                sign.UpdatedOn = null;
                 var result= Customer.Signup(sign);
                 return RedirectToAction(nameof(List));
             }
@@ -76,15 +73,12 @@ namespace Tasksample.Controllers
                 return View();
             }
         }   
-
         // GET: CustomerController1/Edit/5
         public ActionResult Update(long id)
         {
             var find = Customer.Search(id);
-            return View ("Edit",find);
-           
+            return View ("Edit",find);    
         }
-
         // POST: CustomerController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -92,7 +86,6 @@ namespace Tasksample.Controllers
         {
             try
             {
-
                 Customer.Updatecustomer(model);
                 return RedirectToAction(nameof(List));
             }
@@ -101,14 +94,12 @@ namespace Tasksample.Controllers
                 return View();
             }
         }
-
         // GET: CustomerController1/Delete/5
         public ActionResult Delete(long id)
         {
             var result= Customer.Search(id);
             return View("Delete",result);
         }
-
         // POST: CustomerController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -116,7 +107,6 @@ namespace Tasksample.Controllers
         {
             try
             {
-
                 Customer.Delete(id);
                 return RedirectToAction(nameof(List));
             }
@@ -124,7 +114,6 @@ namespace Tasksample.Controllers
             {
                 return View();
             }
-        }
-       
+        }     
     }
 }
